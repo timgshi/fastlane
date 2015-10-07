@@ -196,7 +196,8 @@ module Fastlane
         require 'aws-sdk'
         s3_client = AWS::S3.new(
           access_key_id: s3_access_key,
-          secret_access_key: s3_secret_access_key
+          secret_access_key: s3_secret_access_key,
+          region: region
         )
         bucket = s3_client.buckets[s3_bucket]
 
