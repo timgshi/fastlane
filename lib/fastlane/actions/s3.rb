@@ -96,8 +96,11 @@ module Fastlane
         end
 
         if params[:upload_metadata] == false
+          puts "skipping plist"
           return true
         end
+
+        puts "running plist"
 
         #####################################
         #
