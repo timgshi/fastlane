@@ -51,6 +51,7 @@ module Fastlane
 
         # Pulling parameters for other uses
         s3_subdomain = params[:region] ? "s3-#{params[:region]}" : "s3"
+        s3_region = params[:region]
         s3_access_key = params[:access_key]
         s3_secret_access_key = params[:secret_access_key]
         s3_bucket = params[:bucket]
@@ -169,7 +170,7 @@ module Fastlane
           s3_access_key,
           s3_secret_access_key,
           s3_bucket,
-          s3_subdomain,
+          s3_region,
           plist_file_name,
           plist_render,
           html_file_name,
