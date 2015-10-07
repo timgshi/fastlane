@@ -169,6 +169,7 @@ module Fastlane
           s3_access_key,
           s3_secret_access_key,
           s3_bucket,
+          s3_subdomain,
           plist_file_name,
           plist_render,
           html_file_name,
@@ -194,13 +195,14 @@ module Fastlane
         end.compact
       end
 
-      def self.upload_plist_and_html_to_s3(s3_access_key, s3_secret_access_key, s3_bucket, plist_file_name, plist_render, html_file_name, html_render, version_file_name, version_render)
+      def self.upload_plist_and_html_to_s3(s3_access_key, s3_secret_access_key, s3_bucket, s3_region, plist_file_name, plist_render, html_file_name, html_render, version_file_name, version_render)
         Actions.verify_gem!('aws-sdk')
         require 'aws-sdk'
+        AWS.config(region: s3_region)
         s3_client = AWS::S3.new(
           access_key_id: s3_access_key,
           secret_access_key: s3_secret_access_key,
-          region: region
+          region: s3_region
         )
         bucket = s3_client.buckets[s3_bucket]
 
